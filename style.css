@@ -19,7 +19,18 @@
 
 .logo a {
     padding: 10px 15px;
-    transition: filter 0.3s
+    transition: filter 0.3s;
+}
+
+.logo {
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo-text {
+    position: relative;
+    top: -7px;
 }
 
 .menu {
