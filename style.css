@@ -1,3 +1,7 @@
+body {
+    background-color: rgba(202, 120, 32, 0.178);
+}
+
 .menu-bar {
     position: fixed;
     display: flex;
@@ -26,6 +30,7 @@
     font-size: 30px;
     text-decoration: none;
     color: white;
+    font-family: Georgia;
 }
 
 .logo-text {
@@ -59,7 +64,7 @@
 }
 
 .logo:hover {
-    filter: invert(0.3)
+    filter: invert(0.3);
 }
 
 #space {
@@ -67,22 +72,53 @@
 }
 
 .contents {
-    border: solid;
+    border: solid 2px;
     padding: 10px;
     padding-top: 0px;
     position: fixed;
     right: 10px;
+    background-color: rgba(202, 120, 32, 0.057);
+    border-radius: 5px;
 }
 
 .contents a {
-    color:blue
+    color:blue;
+    text-decoration: none;
 }
 
 .contents a:hover {
-    color: orange;
+    color: rgb(71, 71, 255);
+    text-decoration: underline;
 }
 
 .section-heading {
     scroll-margin-top: 80px
 }
+
+.main-content {
+    margin-left: 10px;
+}
+
+h1 {
+    margin-left: 10px;
+}
+
+.intro {
+    margin: 10px;
+    margin-right: 200px;
+    margin-left: 10px;
+}
+
+#movement-unit-result {
+    margin-right: 30px;
+}
+
+footer {
+    text-align: center;
+    border-top: dotted 1px;
+    padding: 10px;
+    margin: 50px 30px 10px 30px;
+    font-size: small;
+}
+
 
