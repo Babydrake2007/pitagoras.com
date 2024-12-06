@@ -41,25 +41,52 @@
         <div id="movement" class="section-heading">
             <h2>Bevegelse:</h2>
 
+            <section class="required-questions">
             <label for="movement-unit-result">Hva vil du regne ut?</label>
-            <select name="movement-unit-result" id="movement-unit-result">
-                <option value=""></option>
-                <option value="acceleration">Akselerasjon (m/s^2)</option>
-                <option value="velocity">Hastighet (m/s)</option>
-                <option value="position">Posisjon (m)</option>
-                <option value="velocity-0">Starthastighet (m/s)</option>
-                <option value="time">Tid (s)</option>
-            </select>
+                <select name="movement-unit-result" id="movement-unit-result">
+                    <option value=""></option>
+                    <option value="acceleration">Akselerasjon (m/s^2)</option>
+                    <option value="velocity">Hastighet (m/s)</option>
+                    <option value="position">Posisjon (m)</option>
+                    <option value="velocity-0">Starthastighet (m/s)</option>
+                    <option value="time">Tid (s)</option>
+                </select>
+            </section>
 
-            <label for="movement-unit-info">Hva vet du fra før?</label>
-            <select name="movement-unit-info" id="movement-unit-info">
+            <section class="required-questions">
+                <p>Hva vet du fra før?</p>
+                <ul>
+                    <li>
+                        <label for="v0-m-check">Starthastighet</label>
+                        <input type="checkbox" id="v0-m-check" name="v0-m-check">
+                    </li>
+                    <li>
+                        <label for="a-m-check">Akselerasjon</label>
+                        <input type="checkbox" id="a-m-check" name="a-m-check">
+                    </li>
+                    <li>
+                        <label for="v-m-check">Hastighet</label>
+                        <input type="checkbox" id="v-m-check" name="v-m-check">
+                    </li>
+                    <li>
+                        <label for="s-m-check">Posisjon</label>
+                        <input type="checkbox" id="s-m-check" name="s-m-check">
+                    </li>
+                    <li>
+                        <label for="t-m-check">Tid</label>
+                        <input type="checkbox" id="t-m-check" name="t-m-check">
+                    </li>
+                </ul>
+            </section>
+            
+            <!--<select name="movement-unit-info" id="movement-unit-info">
                 <option value=""></option>
                 <option value="acceleration">Akselerasjon (m/s^2)</option>
                 <option value="velocity">Hastighet (m/s)</option>
                 <option value="position">Posisjon (m)</option>
                 <option value="velocity-0">Starthastighet (m/s)</option>
                 <option value="time">Tid (s)</option>
-            </select>
+            </select> -->
 
             <p>data</p>
             <p>data</p>
