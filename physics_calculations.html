@@ -45,11 +45,11 @@
             <label for="movement-unit-result">Hva vil du regne ut?</label>
                 <select name="movement-unit-result" id="movement-unit-result">
                     <option value=""></option>
-                    <option value="acceleration">Akselerasjon (m/s^2)</option>
-                    <option value="velocity">Hastighet (m/s)</option>
-                    <option value="position">Posisjon (m)</option>
-                    <option value="velocity-0">Starthastighet (m/s)</option>
-                    <option value="time">Tid (s)</option>
+                    <option value="acceleration" id="acceleration-selected">Akselerasjon (m/s^2)</option>
+                    <option value="velocity" id="velocity-selected">Hastighet (m/s)</option>
+                    <option value="position" id="position-selected">Posisjon (m)</option>
+                    <option value="velocity-0" id="velocity-0-selected">Starthastighet (m/s)</option>
+                    <option value="time" id="time-selected">Tid (s)</option>
                 </select>
             </section>
 
@@ -60,24 +60,35 @@
                         <label for="v0-m-check">Starthastighet</label>
                         <input type="checkbox" id="v0-m-check" name="v0-m-check">
                     </li>
+                    <div id="v0-input-c"></div>
                     <li>
                         <label for="a-m-check">Akselerasjon</label>
                         <input type="checkbox" id="a-m-check" name="a-m-check">
                     </li>
+                    <div id="a-input-c"></div>
                     <li>
                         <label for="v-m-check">Hastighet</label>
                         <input type="checkbox" id="v-m-check" name="v-m-check">
                     </li>
+                    <div id="v-input-c"></div>
                     <li>
                         <label for="s-m-check">Posisjon</label>
                         <input type="checkbox" id="s-m-check" name="s-m-check">
                     </li>
+                    <div id="s-input-c"></div>
                     <li>
                         <label for="t-m-check">Tid</label>
                         <input type="checkbox" id="t-m-check" name="t-m-check">
                     </li>
+                    <div id="t-input-c"></div>
                 </ul>
             </section>
+
+            <button id="submit-button">Submit</button>
+
+            <p id="result-output">Svar:</p>
+
+
             
             <!--<select name="movement-unit-info" id="movement-unit-info">
                 <option value=""></option>
@@ -146,7 +157,8 @@
         <br>
         <p>&copy Some rights might possibly be reserved.</p>
     </footer>
-    
+
+    <script src="main.js"></script>
 </body>
 
 </html>
