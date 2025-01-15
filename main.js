@@ -1,4 +1,3 @@
-
 // Movement calculations
 document.addEventListener("DOMContentLoaded", () => {
     const movementUnitResult = document.getElementById("movement-unit-result");
@@ -13,8 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const velocity0InputContainer = document.getElementById("v0-input-c");
     const accelerationInputContainer = document.getElementById("a-input-c");
     const resultOutput = document.getElementById("result-output");
+    const memeImage = document.getElementById("meme-image");
     const submitButton = document.getElementById("submit-button");
     let outputText;
+    let result;
 
     velocity0Check.addEventListener("change", () => {
         if (velocity0Check.checked) {
@@ -68,10 +69,22 @@ document.addEventListener("DOMContentLoaded", () => {
             positionInput.id = "s-input";
             positionInput.placeholder = "Hva er posisjonen?";
             positionInputContainer.appendChild(positionInput);
+
+            const memePositionImage = document.createElement("img");
+            memePositionImage.src = "https://i.imgflip.com/9gi7re.jpg";
+            memePositionImage.id = "meme-position-image";
+            memePositionImage.class = "meme-image";
+            memeImage.appendChild(memePositionImage);
+            memePositionImage.style.width = "150px"; 
+        memePositionImage.style.height = "auto";
         } else {
             const existingSIC = document.getElementById("s-input");
             if (existingSIC) {
                 positionInputContainer.removeChild(existingSIC);
+            }
+            const existingMeme = document.getElementById("meme-position-image");
+            if (existingMeme) {
+                memeImage.removeChild(existingMeme);
             }
         }
     });
@@ -93,17 +106,82 @@ document.addEventListener("DOMContentLoaded", () => {
         
     
     submitButton.addEventListener("click", () => {
-        const userInput = movementUnitResult.value;
-
-        if (userInput === "velocity") {
-            testOutputText = "Svar: vroom!"
-        } else {
-            testOutputText = "Svar: boring"
-        };
-
+        const velocityInput = document.getElementById("v-input");
+        const accelerationInput = document.getElementById("a-input");
+        const velocity0Input = document.getElementById("v0-input");
+        const positionInput = document.getElementById("s-input");
+        const timeInput = document.getElementById("t-input");
+        const v = velocityInput ? velocityInput.value: null;
+        const a = accelerationInput ? accelerationInput.value: null;
+        const v0 = velocity0Input ? velocity0Input.value: null;
+        const s = positionInput ? positionInput.value: null;
+        const t = timeInput ? timeInput.value: null;
         
-        if (movementUnitResult === "position" && accelerationChecked && timeChecked && velocity0Checked) {
-            outputText = String(0.5*a*t**2 + v0*t)
+        const userResultInput = movementUnitResult.value;
+
+        // Position calculations
+        if (userResultInput === "position" && accelerationCheck.checked && timeCheck.checked && velocity0Check.checked) {
+            result = 0.5*a*t**2 + v0*t;
+            outputText = `Resultat: ${result} m` 
+        } else if (userResultInput === "position" && accelerationCheck.checked && velocity0Check.checked && velocityCheck.checked) {
+            result = (v**2 - v0**2) / (2*a)
+            outputText = `Resultat: ${result} m`
+        } else if (userResultInput === "position" && velocity0Check.checked && velocityCheck.checked && timeCheck.checked) {
+            result = 0.5*(v + v0)*t
+            outputText = `Resultat: ${result} m`
+        } else if (userResultInput ==="position" && positionCheck.checked) {
+            outputText = "Du vet allerede posisjonen ..."
+            
+            // Velocity calculations
+        } else if (userResultInput === "velocity" && velocity0Check.checked && accelerationCheck.checked && timeCheck.checked) {
+            result = a*t + v0
+            outputText = `Resultat: ${result} m/s`
+        } else if (userResultInput === "velocity" && positionCheck.checked && velocity0Check.checked && accelerationCheck.checked) {
+            result = Math.sqrt(2*a*s + v0**2)
+            outputText = `Resultat: ${result} m/s`
+        } else if (userResultInput === "velocity" && positionCheck.checked && accelerationCheck.checked && velocity0Check.checked) {
+            result = (s/0.5*t) - v0
+            outputText = `Resultat: ${result} m/s`
+
+            // Start velocity calculations
+        } else if (userResultInput === "velocity-0" && velocityCheck.checked && accelerationCheck.checked && timeCheck.checked) {
+            result = v - a*t
+            outputText = `Resultat: ${result} m/s`
+        } else if (userResultInput === "velocity-0" && accelerationCheck.checked && positionCheck.checked && velocityCheck.checked) {
+            result = Math.sqrt(v**2 - 2*a*s)
+            outputText = `Resultat: ${result} m/s`
+        } else if (userResultInput === "velocity-0" && positionCheck.checked && accelerationCheck.checked && timeCheck.checked) {
+            result = (s - 0.5*a*t**2) / t
+            outputText = `Resultat: ${result} m/s`
+        } else if (userResultInput === "velocity-0" && timeCheck.checked && velocityCheck.checked && positionCheck.checked) {
+            result = (s / 0.5*t) - v
+            outputText = `Resultat: ${result} m/s`
+            
+            // Acceleration calculations
+        } else if (userResultInput === "acceleration" && timeCheck.checked && velocity0Check.checked && velocityCheck.checked) {
+            result = (v - v0) / t
+            outputText = `Resultat: ${result} m/s^2`
+        } else if (userResultInput === "acceleration" && timeCheck.checked && positionCheck.checked && velocity0Check.checked) {
+            result = (s - v0*t) / (0.5*t**2)
+            outputText = `Resultat: ${result} m/s^2`
+        } else if (userResultInput === "acceleration" && positionCheck.checked && velocity0Check.checked && velocityCheck.checked) {
+            result = (v**2 - v0**2) / 2*s
+            outputText = `Resultat: ${result} m/s^2`
+
+            // Time calculations
+        } else if (userResultInput === "time" && accelerationCheck.checked && velocity0Check.checked && velocityCheck.checked) {
+            result = (v - v0) / a
+            outputText = `Resultat: ${result} s`
+        } else if (userResultInput === "time" && positionCheck.checked && velocity0Check.checked && velocityCheck.checked) {
+            result = s / (0.5*(v+v0))
+            outputText = `Resultat: ${result} s`
+        } else if (userResultInput === "time" && positionCheck.checked && accelerationCheck.checked && velocity0Check.checked) {
+            result = (Math.sqrt(2*a*s + v0**2) - v0) / a
+            outputText = `Resultat: ${result} s`
+
+            // Exeptions
+        } else {
+            outputText = "Det du satt inn ble ikke godtatt."
         }
 
         const processedInput = outputText;
